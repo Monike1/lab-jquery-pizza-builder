@@ -1,23 +1,24 @@
 // Write your Pizza Builder JavaScript in this file.
-var pizza = $("#pizza");
-var section = $("section");
-var pepperoni = $("#pizza section.pep");
-var mushrooms = $("#pizza section.mushroom");
-var peppers = $("#pizza section.green-pepper");
-var crust = $("#pizza section.crust");
-var sauce = $("#pizza section section.sauce");
-var btnPepperoni = $("button.btn.btn-pepperoni");
-var btnMushrooms = $("button.btn.btn-mushrooms");
-var btnPeppers = $("button.btn.btn-green-peppers");
-var btnSauce = $("button.btn.btn-sauce");
-var btnCrust = $("button.btn.btn-crust");
-// var ingredients = $("aside ul");
-var li = $("aside ul li");
-var totalPriceStr = $("aside strong");
-var totalPrice = 13;
-var dolar = "$";
+$(document).ready(function() {
+  var pizza = $("#pizza");
+  var section = $("section");
+  var pepperoni = $("#pizza section.pep");
+  var mushrooms = $("#pizza section.mushroom");
+  var peppers = $("#pizza section.green-pepper");
+  var crust = $("#pizza section.crust");
+  var sauce = $("#pizza section section.sauce");
+  var btnPepperoni = $("button.btn.btn-pepperoni");
+  var btnMushrooms = $("button.btn.btn-mushrooms");
+  var btnPeppers = $("button.btn.btn-green-peppers");
+  var btnSauce = $("button.btn.btn-sauce");
+  var btnCrust = $("button.btn.btn-crust");
+  // var ingredients = $("aside ul");
+  var li = $("aside ul li");
+  var totalPriceStr = $("aside strong");
+  var totalPrice = 13;
+  var dolar = "$";
 
-//default - remove white sauce and gluten free crust
+  //default - remove white sauce and gluten free crust
 function defaultPizza() {
   sauce.removeClass("sauce-white");
   btnSauce.removeClass("active");
@@ -28,9 +29,9 @@ function defaultPizza() {
   totalPriceStr = totalPriceStr.html(`${dolar}${totalPrice}`);
 }
 
-defaultPizza();
+  defaultPizza();
 
-// to change count the total price
+  // to change count the total price
 function changeTotal(ingredientBtn, price) {
   if (!(ingredientBtn.hasClass("active"))) {
     totalPrice -= price;
@@ -43,7 +44,8 @@ function changeTotal(ingredientBtn, price) {
 
 
 // add event listeners to buttons 
-btnPepperoni.bind('click', function() {
+btnPepperoni.click(function() {
+  debugger
   pepperoni.toggle();
   btnPepperoni.toggleClass("active");
   $( "li:contains('$1 pepperonni')" ).toggle();
@@ -52,7 +54,7 @@ btnPepperoni.bind('click', function() {
   
 }); 
 
-btnMushrooms.bind('click', function() {
+btnMushrooms.click(function() {
   mushrooms.toggle();
   btnMushrooms.toggleClass("active");
   $( "li:contains('$1 mushrooms')" ).toggle();
@@ -60,7 +62,7 @@ btnMushrooms.bind('click', function() {
   changeTotal(btnMushrooms, 1);
 }); 
 
-btnPeppers.bind('click', function() {
+btnPeppers.click(function() {
   peppers.toggle();
   btnPeppers.toggleClass("active");
   $( "li:contains('$1 green peppers')" ).toggle();
@@ -68,7 +70,7 @@ btnPeppers.bind('click', function() {
   changeTotal(btnPeppers, 1);
 }); 
 
-btnSauce.bind('click', function() {
+btnSauce.click(function() {
   sauce.toggleClass("sauce-white")
   btnSauce.toggleClass("active");
   $( "li:contains('$3 white sauce')" ).toggle();
@@ -76,10 +78,12 @@ btnSauce.bind('click', function() {
   changeTotal(btnSauce, 3);
 });
 
-btnCrust.bind('click', function() {
+btnCrust.click(function() {
   crust.toggleClass("crust-gluten-free");
   btnCrust.toggleClass("active");
   $( "li:contains('$5 gluten-free crust')" ).toggle();
 
   changeTotal(btnCrust, 5);
+});
+
 });
